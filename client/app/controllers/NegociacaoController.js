@@ -5,16 +5,19 @@ class NegociacaoController {
     this._inputQuantidade = $('#quantidade')
     this._inputValor = $('#valor')
     this._negociacoes = new Negociacoes()
+    this._negociacoesView = new NegociacoesView('#negociacoes')
+    this._negociacoesView.update(this._negociacoes)
   }
 
   adiciona(event) {
     event.preventDefault()
     this._negociacoes.adicona(this._criaNegociacao())
+    this._negociacoesView.update(this._negociacoes)
     this._limparFormulario()
   }
 
   _criaNegociacao() {
-    const data = DataConverter.paraData(this._inputData.value)
+    const data = DateConverter.paraData(this._inputData.value)
     return new Negociacao(
       data,
       parseInt(this._inputQuantidade.value),

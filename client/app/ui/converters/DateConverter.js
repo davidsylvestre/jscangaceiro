@@ -1,4 +1,4 @@
-class DataConverter {
+class DateConverter {
   constructor() {
     throw new Error('Esta classe não pode ser instanciada')
   }
@@ -7,10 +7,10 @@ class DataConverter {
     const dia = data.getDate()
     const mes = data.getMonth() + 1
     const ano = data.getFullYear()
-    return `${dia}/${ano}/${mes}`
+    return `${dia}/${mes}/${ano}`
   }
 
-  static paraData(data) {
+  static paraData(texto) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(texto))
       throw new Error('Deve estar no formato aaaa-mm-dd')
     return new Date(
