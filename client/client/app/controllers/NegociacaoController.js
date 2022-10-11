@@ -8,11 +8,8 @@ class NegociacaoController {
 
   adiciona(event) {
     event.preventDefault()
-    const data = new Date(
-      ...this._inputData.value
-        .split('-')
-        .map((item, indice) => item - (indice % 2))
-    )
+    const data = DataConverter.paraData(this._inputData.value)
+
     const negociacao = new Negociacao(
       data,
       parseInt(this._inputQuantidade.value),
