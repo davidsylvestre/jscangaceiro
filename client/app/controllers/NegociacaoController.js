@@ -4,6 +4,7 @@ class NegociacaoController {
     this._inputData = $('#data')
     this._inputQuantidade = $('#quantidade')
     this._inputValor = $('#valor')
+    this._service = new NegociacaoService()
 
     const self = this
     this._negociacoes = new Bind(
@@ -52,5 +53,17 @@ class NegociacaoController {
   apaga() {
     this._negociacoes.esvazia()
     this._mensagem.texto = 'Negociações apagadas com sucesso'
+  }
+
+  importarNegociacoes() {
+    this._service.obterNegociacoesDaSemana((err, negociacoes) => {
+      if (err) {
+        this._mensagem.texto = err
+        return
+      }
+      negociacoes.forEach((negociacao) => {
+        this._negociacoes.adiciona(negociacao)
+      })
+    })
   }
 }
